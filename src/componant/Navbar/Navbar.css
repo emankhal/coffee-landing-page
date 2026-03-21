@@ -1,0 +1,20 @@
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: white; 
+        margin-top: 15px;      
+        padding: 20px;         
+        border-radius: 10px;  
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+
+    .navbar-collapse .nav-link {
+        color: black !important;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .navbar-collapse .nav-link:last-child {
+        border-bottom: none;
+    }
+}

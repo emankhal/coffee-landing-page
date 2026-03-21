@@ -1,0 +1,49 @@
+.footer-section {
+  background-color: #231E1A; 
+  color: #FFFFFF;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif; 
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #FFFFFF !important;
+}
+
+.footer-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+  color: #FFFFFF;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7); 
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #FFFFFF;
+  padding-left: 5px; 
+}
+
+.social-icons a {
+  color: #FFFFFF;
+  font-size: 18px;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  color: #E2D9C8; 
+}
