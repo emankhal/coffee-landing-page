@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './Navbar.css';
-
+import icone from '../../assets/icone.PNG'
 export default function Navbar() {
   const { t, i18n } = useTranslation();
 
@@ -17,17 +17,22 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-dark navbar-expand-lg text-capitalize w-100 px-lg-5 position-absolute top-0 start-0 z-3 py-4 bg-transparent">
       <div className="container-fluid">
-        
+
         {/* اللوجو - بيترجم برضه لو حبيتي */}
-        <Link className="navbar-brand fw-bold fs-3" to="/">
-          {t('nav_coffee', 'COFFEE')}
+        <Link className="navbar-brand d-flex align-items-center gap-2 fw-bold fs-3 text-uppercase" to="/">
+          {/* الأيقونة - اللوجو */}
+          <img
+            src={icone}
+            alt="Coffee Logo"
+            style={{ width: '80px' ,objectFit: 'contain' }}
+          />
         </Link>
 
         {/* زرار الموبايل */}
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
         >
           <span className="navbar-toggler-icon" />
@@ -54,8 +59,8 @@ export default function Navbar() {
 
             {/* زرار تغيير اللغة - حطيته جوه الـ list عشان يفضل متنظم */}
             <li className="nav-item ms-lg-4 mt-3 mt-lg-0">
-              <button 
-                onClick={toggleLanguage} 
+              <button
+                onClick={toggleLanguage}
                 className="btn btn-outline-light btn-sm rounded-pill px-3 fw-bold"
                 style={{ transition: 'all 0.3s' }}
               >
