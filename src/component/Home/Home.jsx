@@ -1,18 +1,18 @@
 
 import { Carousel } from "react-bootstrap";
 import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedin } from "react-icons/fa6";
-import img1 from "../../assets/coffee1.PNG";
-import img2 from "../../assets/img2.JPG";
-import img3 from "../../assets/img3.WEBP";
-import img4 from "../../assets/Group 9.PNG";
-import img5 from "../../assets/Rectangle 7.PNG";
-import img6 from "../../assets/Rectangle 7 (2).PNG";
-import icone1 from "../../assets/icon1.PNG";
-import icone2 from "../../assets/icon2.PNG";
-import icone3 from "../../assets/icon3.PNG";
-import beans1 from "../../assets/beans.PNG"
-import beans2 from "../../assets/beans2.PNG"
-import customers from "../../assets/customers.PNG"
+import img1 from "../../assets/coffee1.png";
+import img2 from "../../assets/img2.jpg";
+import img3 from "../../assets/img3.webp";
+import img4 from "../../assets/Group 9.png";
+import img5 from "../../assets/Rectangle 7.png";
+import img6 from "../../assets/Rectangle 7 (2).png";
+import icone1 from "../../assets/icon1.png";
+import icone2 from "../../assets/icon2.png";
+import icone3 from "../../assets/icon3.png";
+import beans1 from "../../assets/beans.png";
+import beans2 from "../../assets/beans2.png";
+import customers from "../../assets/customers.png";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
