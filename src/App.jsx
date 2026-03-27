@@ -1,9 +1,7 @@
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
-import Navbar from './componant/Navbar/Navbar'
-import Layout from './componant/Layout/Layout'
-import Home from './componant/Home/Home'
+import Layout from './component/Layout/Layout'
+import Home from './component/Home/Home'
 
 function App() {
  

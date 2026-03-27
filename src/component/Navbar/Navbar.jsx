@@ -1,40 +1,70 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import './Navbar.css';
 
-import './Navbar.css'
 export default function Navbar() {
-  return (
-    <nav className="navbar navbar-dark navbar-expand-lg text-capitalize w-100 px-5 position-absolute top-0 start-0 z-3 py-4 bg-transparent">
-      <div className="container-fluid d-flex justify-content-between align-items-center">
-        
-    
-        <Link className="navbar-brand fw-bold fs-3" to="/">Coffe</Link>
+  const { t, i18n } = useTranslation();
 
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLang);
+    // ضبط اتجاه الصفحة: RTL للعربي و LTR للإنجليزي
+    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = newLang;
+  };
+
+  return (
+    <nav className="navbar navbar-dark navbar-expand-lg text-capitalize w-100 px-lg-5 position-absolute top-0 start-0 z-3 py-4 bg-transparent">
+      <div className="container-fluid">
+        
+        {/* اللوجو - بيترجم برضه لو حبيتي */}
+        <Link className="navbar-brand fw-bold fs-3" to="/">
+          {t('nav_coffee', 'COFFEE')}
+        </Link>
+
+        {/* زرار الموبايل */}
+        <button 
+          className="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarSupportedContent"
+        >
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 fw-medium">
+        <div className="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent" >
+          {/* اللينكات */}
+          <ul className="navbar-nav  mb-2 mb-lg-0 fw-medium align-items-center">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+              <Link className="nav-link active" to="/">{t('nav_home')}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/coffee">Coffee</Link>
+              <Link className="nav-link" to="/coffee">{t('nav_coffee')}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/bakery">Bakery</Link>
+              <Link className="nav-link" to="/bakery">{t('nav_bakery')}</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link" to="/about">{t('nav_about')}</Link>
             </li>
-            <li className="nav-item ms-lg-3">
-              <Link className="nav-link " to="/login">Login</Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">{t('nav_login')}</Link>
+            </li>
+
+            {/* زرار تغيير اللغة - حطيته جوه الـ list عشان يفضل متنظم */}
+            <li className="nav-item ms-lg-4 mt-3 mt-lg-0">
+              <button 
+                onClick={toggleLanguage} 
+                className="btn btn-outline-light btn-sm rounded-pill px-3 fw-bold"
+                style={{ transition: 'all 0.3s' }}
+              >
+                {t('lang_name')}
+              </button>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  )
+  );
 }

@@ -1,0 +1,168 @@
+.my-button {
+  background-color: #E2D9C8 !important;
+  transition: 0.3s !important; 
+ 
+}
+.my-button-l{
+    left: 30px !important;
+}
+.my-button-r{
+    right: 30px !important;
+}
+
+.my-button:hover {
+  background-color: #c9bba3!important; 
+     
+}
+.swiper-wrapper{
+    height: fit-content !important;
+}
+.custom-card {
+  border-radius: 20px !important;
+  height: auto !important; /* يخلي الكارد يلم على قد اللي جواه */
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.card-img-container {
+  height: 180px; /* تقليل ارتفاع الصورة شوية عشان الكارد كله يلم */
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.card-img-top {
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px !important;
+}
+
+.card-text {
+  /* لو الكلام سطر واحد الكارد هيصغر، لو سطرين هيكبر سنة */
+  margin-bottom: 15px !important;
+}
+
+.price-tag {
+  color: #3d251e;
+  font-weight: 800;
+}
+
+/* إخفاء السهم في الموبايل عشان الزحمة */
+@media (max-width: 576px) {
+  .card-img-container {
+    height: 150px; 
+  }
+}
+.my-button-r{
+    right: -25px !important;
+}
+.my-button-l{
+    left: -25px !important;
+}
+
+
+
+.review-swiper .swiper-slide {
+  transition: all 0.5s ease;
+  transform: scale(0.85);
+  opacity: 0.5;
+}
+
+
+.review-swiper .swiper-slide-active {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.review-card {
+  border-radius: 25px; 
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+}
+
+.review-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+
+.swiper-slide-active .review-card {
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+  border: 1px solid #E2D9C8 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #3d251e !important;
+}
+
+
+.section{
+    background-color: rgb(226, 217, 200);
+}
+.img-l{
+    position: relative;
+    left:130px
+}
+.img-r{
+    position: relative;
+    right:130px
+}
+h2,p{
+    font-family: "poppins";
+}
+
+.footer-section {
+  background-color: #231E1A; 
+  color: #FFFFFF;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif; 
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #FFFFFF !important;
+}
+
+.footer-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+  color: #FFFFFF;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7); 
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #FFFFFF;
+  padding-left: 5px; 
+}
+
+.social-icons a {
+  color: #FFFFFF;
+  font-size: 18px;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  color: #E2D9C8; 
+}
