@@ -1,0 +1,11 @@
+html {
+  /* استبدلي 100px بارتفاع الناف بار بتاعك */
+  scroll-padding-top: 100px; 
+  scroll-behavior: smooth !important;
+}
+
+body {
+  /* تأكدي إن مفيش حاجة قافلة السكرول */
+  overflow-y: visible !important;
+  height: auto !important;
+}

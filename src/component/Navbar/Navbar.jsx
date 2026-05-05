@@ -1,35 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import './Navbar.css';
-import icone from '../../assets/icone.png'
-export default function Navbar() {
-  const { t, i18n } = useTranslation();
+import icone from '../../assets/icone.PNG'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import { MdLanguage } from 'react-icons/md';
+import ModernTranslate from '../../ModernTranslate';
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ar' : 'en';
-    i18n.changeLanguage(newLang);
-    
-    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = newLang;
-  };
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="navbar navbar-dark navbar-expand-lg text-capitalize w-100 px-lg-5 position-absolute top-0 start-0 z-3 py-4 bg-transparent">
+    <nav className={`navbar navbar-dark navbar-expand-lg text-capitalize w-100 px-lg-5 position-fixed top-0 start-0 z-3 py-2 transition-all ${scrolled ? 'bg-navbar-scrolled shadow-sm' : 'bg-transparent py-2'}`}>
       <div className="container-fluid">
-
         <Link className="navbar-brand d-flex align-items-center gap-2 fw-bold fs-3 text-uppercase" to="/">
-         
           <img
             src={icone}
             alt="Coffee Logo"
-            style={{ width: '80px' ,objectFit: 'contain' }}
+            className="navbar-logo"
+            style={{ width: scrolled ? '65px' : '80px', objectFit: 'contain', transition: 'width 0.3s' }}
           />
         </Link>
 
-       
         <button
-          className="navbar-toggler"
+          className="navbar-toggler border-0 shadow-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -37,34 +44,28 @@ export default function Navbar() {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent" >
-          
-          <ul className="navbar-nav  mb-2 mb-lg-0 fw-medium align-items-center">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul className="navbar-nav mb-2 mb-lg-0 fw-medium align-items-center gap-lg-3">
             <li className="nav-item">
-              <Link className="nav-link active" to="/">{t('nav_home')}</Link>
+              <Link className="nav-link active nav-link-custom" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/coffee">{t('nav_coffee')}</Link>
+              <Link className="nav-link nav-link-custom" smooth to="/#Special-Coffee">
+                Coffee
+              </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/bakery">{t('nav_bakery')}</Link>
+              <Link className="nav-link nav-link-custom" to="/bakery">Bakery</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">{t('nav_about')}</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">{t('nav_login')}</Link>
-            </li>
-
-        
-            <li className="nav-item ms-lg-4 mt-3 mt-lg-0">
-              <button
-                onClick={toggleLanguage}
-                className="btn btn-outline-light btn-sm rounded-pill px-3 fw-bold"
-                style={{ transition: 'all 0.3s' }}
+              <div
+                onClick={() => window.changeLanguage()}
+                className="flex items-center justify-center w-10 h-10 hover:bg-gray-100 rounded-full cursor-pointer transition-all"
               >
-                {t('lang_name')}
-              </button>
+                <MdLanguage size={24} className="text-white" />
+                
+                <ModernTranslate />
+              </div>
             </li>
           </ul>
         </div>

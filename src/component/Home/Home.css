@@ -57,12 +57,40 @@
 }
 .my-button-r{
     right: -25px !important;
+    
 }
 .my-button-l{
     left: -25px !important;
 }
 
+/* تأكد من أن الحاوية الأبوية تسمح بظهور الأزرار خارج الحدود */
+.container.position-relative {
+    overflow: visible !important;
+}
 
+.swiper-nav-btn {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    border: 1px solid #ddd !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* دفع الأزرار للخارج */
+.prev-btn {
+    left: -25px !important;
+}
+
+.next-btn {
+    right: -25px !important;
+}
+
+/* تأثير الـ Hover */
+.swiper-nav-btn:hover {
+    background-color: #6F4E37 !important; /* لون القهوة */
+    color: white !important;
+    border-color: #6F4E37 !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
 
 .review-swiper .swiper-slide {
   transition: all 0.5s ease;
@@ -165,4 +193,18 @@ h2,p{
   opacity: 1;
   transform: translateY(-3px);
   color: #E2D9C8; 
+}
+.btn-book-table {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.btn-book-table:hover {
+  background-color: #553c2a !important;
+  transform: translateY(-3px); 
+  box-shadow: 0 8px 15px rgba(111, 78, 55, 0.3) !important; 
+  color: #fff !important;
+}
+
+.btn-book-table:active {
+  transform: translateY(-1px); 
 }
