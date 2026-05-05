@@ -1,12 +1,12 @@
 import { Carousel, Modal, Button, Form } from 'react-bootstrap';
 import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedin } from "react-icons/fa6";
-import img1 from "../../assets/coffee1.PNG";
-import img2 from "../../assets/img2.JPG";
-import img3 from "../../assets/img3.WEBP";
-import icone1 from "../../assets/icon1.PNG";
-import icone2 from "../../assets/icon2.PNG";
-import icone3 from "../../assets/icon3.PNG";
-import beans1 from "../../assets/beans.PNG"
+import img1 from "../../assets/coffee1.png";
+import img2 from "../../assets/img2.jpg";
+import img3 from "../../assets/img3.webp";
+import icone1 from "../../assets/icon1.png";
+import icone2 from "../../assets/icon2.png";
+import icone3 from "../../assets/icon3.png";
+import beans1 from "../../assets/beans.png"
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
