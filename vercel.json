@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://coffee-shop-api-vert.vercel.app/api/:path*"
+    }
+  ]
+}
