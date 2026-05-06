@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Layout from './component/Layout/Layout'
 import Home from './component/Home/Home'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
  
@@ -12,6 +13,7 @@ function App() {
     }])
   return <>
   <RouterProvider router={router}/>
+  <Toaster position="top-center" />
   </>
 }
 

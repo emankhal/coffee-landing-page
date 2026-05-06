@@ -17,6 +17,7 @@ import 'swiper/css/pagination';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik } from 'formik';
+import toast from 'react-hot-toast';
 
 export default function Home() {
   const coffeeSwiperRef = useRef(null);
@@ -71,14 +72,20 @@ export default function Home() {
     validateOnChange: false,
     validateOnBlur: true,
     onSubmit: (values) => {
-      axios.post("/api/newsletter", { email: values.email })
+      const subscriptionPromise = axios.post("/api/newsletter", { email: values.email });
+
+      toast.promise(subscriptionPromise, {
+        loading: 'Subscribing...',
+        success: 'Subscription successful!',
+        error: 'Could not subscribe. Please try again.',
+      });
+
+      subscriptionPromise
         .then((response) => {
-          alert(t('subscribe_success'));
           formik.resetForm();
         })
         .catch((error) => {
           console.error("Subscription error:", error);
-          alert(t('subscribe_error'));
         });
     },
   });
@@ -89,22 +96,27 @@ export default function Home() {
     validateOnChange: false,
     validateOnBlur: true,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      // We create the promise but don't 'await' it immediately
+      const reservationPromise = axios.post("/api/reservations", values);
+
+      toast.promise(reservationPromise, {
+        loading: 'Saving your reservation...',
+        success: 'Reservation successful!',
+        error: 'Could not save reservation. Please try again.',
+      });
+
       try {
-        const response = await axios.post("/api/reservations", values);
-        console.log(response);
-        console.log("Reservation successful:", response.data);
-        alert(t('reservation_success'));
+        await reservationPromise;
         resetForm();
         handleClose();
       } catch (error) {
         console.error("Reservation error:", error);
-        alert(t('reservation_error'));
       } finally {
         setSubmitting(false);
       }
     },
   });
-  console.log(reserveFormik.values);
+
 
 
 
@@ -121,7 +133,7 @@ export default function Home() {
         <Carousel controls={false} indicators={true} fade>
           {sliderImages.map((image, index) => (
             <Carousel.Item key={index} interval={2000}>
-              {/* Overlay - الطبقة السوداء الشفافة */}
+
               <div
                 className="position-absolute w-100 h-100 top-0 start-0"
                 style={{ backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1 }}
@@ -143,7 +155,7 @@ export default function Home() {
         >
 
           <h1 className="display-2 fw-bold mb-4 shadow-sm">
-           Welcome To Our Coffee Shop
+            Welcome To Our Coffee Shop
           </h1>
 
 
@@ -161,7 +173,7 @@ export default function Home() {
               style={{ backgroundColor: '#6F4E37', color: '#fff' }}
               onClick={handleShow}
             >
-             Book a Table
+              Book a Table
             </Button>
             <Form onSubmit={reserveFormik.handleSubmit}>
               <Modal show={show} onHide={handleClose} centered>
@@ -172,7 +184,7 @@ export default function Home() {
                 </Modal.Header>
 
                 <Modal.Body className="pt-4">
-                  {/* الصف الأول: الاسم والإيميل */}
+
                   <div className="row">
                     <div className="col-md-6 mb-3">
                       <Form.Group controlId="formName">
@@ -185,6 +197,7 @@ export default function Home() {
                           onChange={reserveFormik.handleChange}
                           onBlur={reserveFormik.handleBlur}
                           value={reserveFormik.values.full_name}
+                          required
                         />
                       </Form.Group>
                     </div>
@@ -199,12 +212,13 @@ export default function Home() {
                           onChange={reserveFormik.handleChange}
                           onBlur={reserveFormik.handleBlur}
                           value={reserveFormik.values.email}
+                          required
                         />
                       </Form.Group>
                     </div>
                   </div>
 
-                  {/* الصف الثاني: الهاتف وعدد الطاولات */}
+                 
                   <div className="row">
                     <div className="col-md-6 mb-3">
                       <Form.Group controlId="formPhone">
@@ -217,6 +231,7 @@ export default function Home() {
                           onChange={reserveFormik.handleChange}
                           onBlur={reserveFormik.handleBlur}
                           value={reserveFormik.values.phone}
+                          required
                         />
                       </Form.Group>
                     </div>
@@ -232,6 +247,7 @@ export default function Home() {
                           onChange={reserveFormik.handleChange}
                           onBlur={reserveFormik.handleBlur}
                           value={reserveFormik.values.tables_count}
+                          required
                         />
                       </Form.Group>
                     </div>
@@ -247,13 +263,14 @@ export default function Home() {
                         onChange={reserveFormik.handleChange}
                         onBlur={reserveFormik.handleBlur}
                         value={reserveFormik.values.guests}
+                        required
                       >
-                        
-                        
-                        <option value="1">1 Person</option>
+
+                        <option value="" hidden> Guests</option>
+                        <option value="1" >1 Person</option>
                         <option value="2">2 People</option>
                         <option value="4">4 People</option>
-                        <option value="Large Group">Large Group</option>
+                        <option value="6">6 People</option>
                       </Form.Select>
                     </div>
                     <div className="col-md-4 mb-3">
@@ -266,6 +283,7 @@ export default function Home() {
                           onChange={reserveFormik.handleChange}
                           onBlur={reserveFormik.handleBlur}
                           value={reserveFormik.values.reservation_time}
+                          required
                         />
                       </Form.Group>
                     </div>
@@ -279,6 +297,7 @@ export default function Home() {
                           onChange={reserveFormik.handleChange}
                           onBlur={reserveFormik.handleBlur}
                           value={reserveFormik.values.reservation_date}
+                          required
                         />
                       </Form.Group>
                     </div>
@@ -291,16 +310,21 @@ export default function Home() {
                     variant="outline-secondary"
                     onClick={handleClose}
                     className="px-4 rounded-pill"
+                   
+                    disabled={reserveFormik.isSubmitting}
                   >
                     Cancel
                   </Button>
                   <Button
                     type="submit"
+                   
                     onClick={reserveFormik.handleSubmit}
                     className="px-5 rounded-pill border-0"
                     style={{ backgroundColor: '#6F4E37' }}
+                    
+                    disabled={reserveFormik.isSubmitting}
                   >
-                    Reserve
+                    {reserveFormik.isSubmitting ? 'Reserving...' : 'Reserve'}
                   </Button>
                 </Modal.Footer>
               </Modal>
@@ -387,7 +411,7 @@ export default function Home() {
                           ${Number(product.price).toFixed(2)}
                         </span>
                       </div>
-                      {/* تحديد عدد سطور الوصف عشان الكروت تبقى طول واحد */}
+                     
                       <p className="card-text small text-muted mb-3 text-start" style={{
                         display: '-webkit-box',
                         WebkitLineClamp: '2',
@@ -413,7 +437,7 @@ export default function Home() {
               <div className="spinner-border text-brown" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
-              <p className="mt-2">Loading Coffee Menu...</p>
+              
             </div>
           )}
 
